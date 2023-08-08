@@ -33,7 +33,9 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        class_dict = self.__dict__
+        class_dict = {}
+        for key, val in self.__dict__.items():
+            class_dict[key] = val
         class_dict['__class__'] = type(self).__name__
         class_dict['created_at'] = class_dict['created_at'].isoformat(timespec='microseconds')
         class_dict['updated_at'] = class_dict['updated_at'].isoformat(timespec='microseconds')
