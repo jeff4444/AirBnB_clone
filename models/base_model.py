@@ -10,6 +10,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initialises the BaseModel class"""
+
         if kwargs:
             for key, val in kwargs.items():
                 if key != '__class__':
