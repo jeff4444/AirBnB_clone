@@ -29,6 +29,24 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def do_show(self, arg):
+        if arg:
+            args_list = arg.split()
+            available_classes = ['BaseModel']
+            if args_list[0] not in available_classes:
+                print("** class doesn't exist **")
+                return
+            if len(args_list) == 1:
+                print("** instance id missing **")
+                return
+            key_name = f'{args_list[0]}.{args_list[1]}'
+            if key_name not in models.storage.all():
+                print("** no instance found **")
+            else:
+                print(models.storage.all()[key_name])
+        else:
+            print("** class name missing **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
