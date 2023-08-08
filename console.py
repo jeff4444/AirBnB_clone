@@ -30,6 +30,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_show(self, arg):
+        """Shows an instance using its ID"""
         if arg:
             args_list = arg.split()
             available_classes = ['BaseModel']
@@ -46,6 +47,43 @@ class HBNBCommand(cmd.Cmd):
                 print(models.storage.all()[key_name])
         else:
             print("** class name missing **")
+
+    def do_destroy(self, arg):
+        """Destroys an instance using its ID"""
+        if arg:
+            args_list = arg.split()
+            available_classes = ['BaseModel']
+            if args_list[0] not in available_classes:
+                print("** class doesn't exist **")
+                return
+            if len(args_list) == 1:
+                print("** instance id missing **")
+                return
+            key_name = f'{args_list[0]}.{args_list[1]}'
+            if key_name not in models.storage.all():
+                print("** no instance found **")
+            else:
+                del models.storage.all()[key_name]
+                models.storage.save()
+        else:
+            print("** class name missing **")
+
+    def do_all(self, arg):
+        """Print all instances of a certain class or simply all instances"""
+        if arg:
+            available_classes = ['BaseModel']
+            if arg not in available_classes:
+                print("** class doesn't exist **")
+                return
+            all_list = []
+            for key, val in models.storage.all().items():
+                if arg == key[0:len(arg)]:
+                    all_list.append(str(val))
+        else:
+            all_list = []
+            for key, val in models.storage.all().items():
+                all_list.append(str(val))
+        print(all_list)
 
 
 if __name__ == '__main__':
