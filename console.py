@@ -39,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             my_instance.save()
-            print(my_instane.id)
+            print(my_instance.id)
         else:
             print("** class name missing **")
 
@@ -119,7 +119,9 @@ class HBNBCommand(cmd.Cmd):
             elif len(args_list) == 3:
                 print("** value missing **")
             else:
-                models.storage.all()[key_name][args_list[2]] = args_list[3]
+                if args_list[3][0] == "'" or args_list[3][0] == '"':
+                    args_list[3] = args_list[3][1:(len(args_list[3]) - 1)]
+                setattr(models.storage.all()[key_name], str(args_list[2]), str(args_list[3]))
                 models.storage.save()
         else:
             print("** class name missing **")
