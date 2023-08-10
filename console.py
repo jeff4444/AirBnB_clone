@@ -18,14 +18,28 @@ class HBNBCommand(cmd.Cmd):
         sys.exit(0)
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel and saves it"""
+        """Creates a new instance of a class and saves it"""
         if arg:
-            if arg == 'BaseModel':
+            args_list = arg.split()
+            if args_list[0] == 'BaseModel':
                 my_instance = models.base_model.BaseModel()
-                my_instance.save()
-                print(my_instance.id)
+            elif args_list[0] == 'User':
+                my_instance = models.user.User()
+            elif args_list[0] == 'Place':
+                my_instance = models.place.Place()
+            elif args_list[0] == 'State':
+                my_instance = models.state.State()
+            elif args_list[0] == 'City':
+                my_instance = models.city.City()
+            elif args_list[0] == 'Review':
+                my_instance = models.review.Review()
+            elif args_list[0] == 'Amenity':
+                my_instance = models.amenity.Amenity()
             else:
                 print("** class doesn't exist **")
+                return
+            my_instance.save()
+            print(my_instane.id)
         else:
             print("** class name missing **")
 
@@ -33,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
         """Shows an instance using its ID"""
         if arg:
             args_list = arg.split()
-            available_classes = ['BaseModel']
+            available_classes = ['BaseModel', 'User', 'Place', 'City', 'Amenity', 'Review', 'State']
             if args_list[0] not in available_classes:
                 print("** class doesn't exist **")
                 return
@@ -52,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
         """Destroys an instance using its ID"""
         if arg:
             args_list = arg.split()
-            available_classes = ['BaseModel']
+            available_classes = ['BaseModel', 'User', 'Place', 'City', 'Amenity', 'Review', 'State']
             if args_list[0] not in available_classes:
                 print("** class doesn't exist **")
                 return
@@ -71,14 +85,14 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Print all instances of a certain class or simply all instances"""
         if arg:
-            arg = arg.strip()
-            available_classes = ['BaseModel']
+            args_list = arg.split()
+            available_classes = ['BaseModel', 'User', 'Place', 'City', 'Amenity', 'Review', 'State']
             if arg not in available_classes:
                 print("** class doesn't exist **")
                 return
             all_list = []
             for key, val in models.storage.all().items():
-                if arg == key[0:len(arg)]:
+                if arg == key[0:len(args_list[0])]:
                     all_list.append(str(val))
         else:
             all_list = []
@@ -90,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name and id"""
         if arg:
             args_list = arg.split()
-            available_classes = ['BaseModel']
+            available_classes = ['BaseModel', 'User', 'Place', 'City', 'Amenity', 'Review', 'State']
             if args_list[0] not in available_classes:
                 print("** class doesn't exist **")
                 return
@@ -106,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
             else:
                 models.storage.all()[key_name][args_list[2]] = args_list[3]
-
+                models.storage.save()
         else:
             print("** class name missing **")
 

@@ -28,6 +28,19 @@ class FileStorage:
             with open(self.__file_path, 'r', encoding='utf-8') as f:
                 dict_loaded = json.load(f)
                 for key, val in dict_loaded.items():
-                    self.__objects[key] = models.base_model.BaseModel(**val)
+                    if key[0:len('BaseModel')] == 'BaseModel':
+                        self.__objects[key] = models.base_model.BaseModel(**val)
+                    elif key[0:len('User')] == 'User':
+                        self.__objects[key] = models.user.User(**val)
+                    elif key[0:len('Place')] == 'Place':
+                        self.__objects[key] = models.place.Place(**val)
+                    elif key[0:len('State')] == 'State':
+                        self.__objects[key] = models.state.State(**val)
+                    elif key[0:len('City')] == 'City':
+                        self.__objects[key] = models.city.City(**val)
+                    elif key[0:len('Amenity')] == 'Amenity':
+                        self.__objects[key] = models.amenity.Amenity(**val)
+                    elif key[0:len('Review')] == 'Review':
+                        self.__objects[key] = models.review.Review(**val)
         except FileNotFoundError:
             return

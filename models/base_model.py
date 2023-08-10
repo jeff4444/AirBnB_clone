@@ -29,7 +29,7 @@ class BaseModel:
         return f'[{type(self).__name__}] ({self.id}) {self.__dict__}'
 
     def save(self):
-        updated_at = datetime.datetime.now()
+        self.updated_at = datetime.datetime.now()
         models.storage.save()
 
     def to_dict(self):
