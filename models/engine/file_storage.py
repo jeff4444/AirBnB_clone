@@ -30,4 +30,4 @@ class FileStorage:
                 for key, val in dict_loaded.items():
                     self.__objects[key] = models.base_model.BaseModel(**val)
         except FileNotFoundError:
-            pass
+            return

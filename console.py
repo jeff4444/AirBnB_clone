@@ -71,6 +71,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Print all instances of a certain class or simply all instances"""
         if arg:
+            arg = arg.strip()
             available_classes = ['BaseModel']
             if arg not in available_classes:
                 print("** class doesn't exist **")
@@ -84,6 +85,31 @@ class HBNBCommand(cmd.Cmd):
             for key, val in models.storage.all().items():
                 all_list.append(str(val))
         print(all_list)
+
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id"""
+        if arg:
+            args_list = arg.split()
+            available_classes = ['BaseModel']
+            if args_list[0] not in available_classes:
+                print("** class doesn't exist **")
+                return
+            if len(args_list) == 1:
+                print("** instance id missing **")
+                return
+            key_name = f'{args_list[0]}.{args_list[1]}'
+            if key_name not in models.storage.all():
+                print("** no instance found **")
+            elif len(args_list) == 2:
+                print("** attribute name missing **")
+            elif len(args_list) == 3:
+                print("** value missing **")
+            else:
+                models.storage.all()[key_name][args_list[2]] = args_list[3]
+
+        else:
+            print("** class name missing **")
+
 
 
 if __name__ == '__main__':
