@@ -21,25 +21,23 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of a class and saves it"""
         if arg:
             args_list = arg.split()
-            if args_list[0] == 'BaseModel':
-                my_instance = models.base_model.BaseModel()
-            elif args_list[0] == 'User':
-                my_instance = models.user.User()
-            elif args_list[0] == 'Place':
-                my_instance = models.place.Place()
-            elif args_list[0] == 'State':
-                my_instance = models.state.State()
-            elif args_list[0] == 'City':
-                my_instance = models.city.City()
-            elif args_list[0] == 'Review':
-                my_instance = models.review.Review()
-            elif args_list[0] == 'Amenity':
-                my_instance = models.amenity.Amenity()
+            class_dicts = {'BaseModel': models.base_model.BaseModel,
+                    'User': models.user.User,
+                    'Place': models.place.Place,
+                    'Review': models.review.Review,
+                    'City': models.city.City,
+                    'Amenity': models.amenity.Amenity,
+                    'State': models.state.State,
+                    }
+            my_instance = None
+            for key in class_dicts:
+                if args_list[0] == key:
+                    my_instance = class_dicts[key]()
+            if my_instance is not None:
+                my_instance.save()
+                print(my_instance.id)
             else:
                 print("** class doesn't exist **")
-                return
-            my_instance.save()
-            print(my_instance.id)
         else:
             print("** class name missing **")
 
@@ -82,8 +80,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
-    def do_all(self, arg):
-        """Print all instances of a certain class or simply all instances"""
+    def do_all_list(self, arg):
+        """return all instances of a certain class or simply all instances"""
         if arg:
             args_list = arg.split()
             available_classes = ['BaseModel', 'User', 'Place', 'City', 'Amenity', 'Review', 'State']
@@ -98,7 +96,11 @@ class HBNBCommand(cmd.Cmd):
             all_list = []
             for key, val in models.storage.all().items():
                 all_list.append(str(val))
-        print(all_list)
+        return all_list
+
+    def do_all(self, arg):
+        """Print all instances of a certain class"""
+        print(self.do_all_list(arg))
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
@@ -125,6 +127,30 @@ class HBNBCommand(cmd.Cmd):
                 models.storage.save()
         else:
             print("** class name missing **")
+
+    def default(self, arg):
+        args = arg.split()
+        commands_list = args[0].split('.')
+        if len(commands_list) == 1:
+            return
+        func = commands_list[1]
+        if func == 'all()':
+            self.do_all(commands_list[0])
+        elif func == 'count()':
+            print(len(self.do_all_list(commands_list[0])))
+        elif func[0:4] == 'show':
+            arg = commands_list[0] + ' ' + func[6:-2]
+            self.do_show(arg)
+        elif func[0:7] == 'destroy':
+            arg = commands_list[0] + ' ' + func[9:-2]
+            self.do_destroy(arg)
+        elif func[0:6] == 'update':
+            arg = commands_list[0] + ' '
+            print(func)
+            args = func[7:-1].split(',')
+            for argument in args:
+                arg += (' ' + argument[1:-1])
+            self.do_update(commands_list[0])
 
 
 
