@@ -3,7 +3,13 @@
 
 
 import json
-import models
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class FileStorage:
@@ -37,13 +43,13 @@ class FileStorage:
         try:
             with open(self.__file_path, 'r', encoding='utf-8') as f:
                 dict_loaded = json.load(f)
-                class_dicts = {'BaseModel': models.base_model.BaseModel,
-                               'User': models.user.User,
-                               'Place': models.place.Place,
-                               'Review': models.review.Review,
-                               'City': models.city.City,
-                               'Amenity': models.amenity.Amenity,
-                               'State': models.state.State,
+                class_dicts = {'BaseModel': BaseModel,
+                               'User': User,
+                               'Place': Place,
+                               'Review': Review,
+                               'City': City,
+                               'Amenity': Amenity,
+                               'State': State,
                                }
                 for key1, val in dict_loaded.items():
                     for key in class_dicts:

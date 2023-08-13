@@ -4,6 +4,13 @@
 
 import cmd
 import models
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -25,13 +32,13 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of a class and saves it"""
         if arg:
             args_list = arg.split()
-            class_dicts = {'BaseModel': models.base_model.BaseModel,
-                           'User': models.user.User,
-                           'Place': models.place.Place,
-                           'Review': models.review.Review,
-                           'City': models.city.City,
-                           'Amenity': models.amenity.Amenity,
-                           'State': models.state.State,
+            class_dicts = {'BaseModel': BaseModel,
+                           'User': User,
+                           'Place': Place,
+                           'Review': Review,
+                           'City': City,
+                           'Amenity': Amenity,
+                           'State': State,
                            }
             my_instance = None
             for key in class_dicts:
