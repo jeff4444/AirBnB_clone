@@ -17,6 +17,10 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program"""
         return True
 
+    def emptyline(self):
+        """Ensures nothing is executed when an empty line is passed"""
+        pass
+
     def do_create(self, arg):
         """Creates a new instance of a class and saves it"""
         if arg:
@@ -137,6 +141,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         commands_list = args[0].split('.')
         if len(commands_list) == 1:
+            print(f'*** Unknown syntax: {arg}')
             return
         func = commands_list[1]
         if func == 'all()':
@@ -149,6 +154,8 @@ class HBNBCommand(cmd.Cmd):
         elif func[0:7] == 'destroy':
             arg = commands_list[0] + ' ' + func[9:-2]
             self.do_destroy(arg)
+        else:
+            print(f"*** Unknown syntax: {arg}")
 
 
 if __name__ == '__main__':
