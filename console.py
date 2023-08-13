@@ -3,7 +3,6 @@
 
 
 import cmd
-import sys
 import models
 
 
@@ -12,11 +11,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """EOF command to exit the program"""
-        sys.exit(0)
+        return True
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
-        sys.exit(0)
+        return True
 
     def do_create(self, arg):
         """Creates a new instance of a class and saves it"""
