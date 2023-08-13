@@ -36,3 +36,12 @@ class TestBaseModel(unittest.TestCase):
         model_dict['name'] = "Hello"
         model_dict['__class__'] = 'BaseModel'
         self.assertEqual(my_model.to_dict(), model_dict)
+
+    def test_str(self):
+        my_model = BaseModel()
+        model_dict = {}
+        model_dict['id'] = my_model.id
+        model_dict['created_at'] = my_model.created_at
+        model_dict['updated_at'] = my_model.updated_at
+        string = f'[BaseModel] ({my_model.id}) {model_dict}'
+        self.assertEqual(str(my_model), string)
