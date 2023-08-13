@@ -8,6 +8,7 @@ from datetime import datetime
 from models.amenity import Amenity
 from models.engine.file_storage import FileStorage
 
+
 class TestAmenity(unittest.TestCase):
     """to test cases for the `Amenity` class."""
 
@@ -64,6 +65,7 @@ class TestAmenity(unittest.TestCase):
         self.assertIn('created_at', a_dict.keys())
         self.assertIn('updated_at', a_dict.keys())
         self.assertNotEqual(a1, a2)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -10,7 +10,7 @@ class TestBaseModel(unittest.TestCase):
     def test_init(self):
         my_model = BaseModel()
         my_model.name = "Mine"
-    
+
     def test_save(self):
         my_model = BaseModel()
         my_model.name = "Hello"
@@ -29,8 +29,10 @@ class TestBaseModel(unittest.TestCase):
         my_model.save()
         model_dict = {}
         model_dict['id'] = my_model.id
-        model_dict['created_at'] = my_model.created_at.isoformat(timespec='microseconds')
-        model_dict['updated_at'] = my_model.updated_at.isoformat(timespec='microseconds')
+        model_dict['created_at'] = my_model.created_at.isoformat(
+                timespec='microseconds')
+        model_dict['updated_at'] = my_model.updated_at.isoformat(
+                timespec='microseconds')
         model_dict['name'] = "Hello"
         model_dict['__class__'] = 'BaseModel'
         self.assertEqual(my_model.to_dict(), model_dict)

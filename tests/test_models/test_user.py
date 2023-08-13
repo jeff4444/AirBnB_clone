@@ -8,6 +8,7 @@ from models.user import User
 from models import storage
 from datetime import datetime
 
+
 class TestState(unittest.TestCase):
     """to test cases for the `User` class."""
 
@@ -61,6 +62,7 @@ class TestState(unittest.TestCase):
         self.assertIn('created_at', a_dict.keys())
         self.assertIn('updated_at', a_dict.keys())
         self.assertNotEqual(u1, u2)
+
 
 if __name__ == "__main__":
     unittest.main()

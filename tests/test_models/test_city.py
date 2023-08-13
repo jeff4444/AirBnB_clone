@@ -8,9 +8,11 @@ from models import storage
 from models.city import City
 from datetime import datetime
 
+
 c1 = City()
 c2 = City(**c1.to_dict())
 c3 = City("hello", "wait", "in")
+
 
 class TestCity(unittest.TestCase):
     """to test cases for the `City` class."""
@@ -52,6 +54,7 @@ class TestCity(unittest.TestCase):
         self.assertIn('created_at', a_dict.keys())
         self.assertIn('updated_at', a_dict.keys())
         self.assertNotEqual(c1, c2)
+
 
 if __name__ == "__main__":
     unittest.main()

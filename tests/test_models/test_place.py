@@ -8,6 +8,7 @@ from models.place import Place
 from models import storage
 from datetime import datetime
 
+
 class TestPlace(unittest.TestCase):
     """to test cases for the `Place` class."""
 
@@ -73,6 +74,7 @@ class TestPlace(unittest.TestCase):
         self.assertIn('created_at', a_dict.keys())
         self.assertIn('updated_at', a_dict.keys())
         self.assertNotEqual(p1, p2)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -8,6 +8,7 @@ from models.state import State
 from models import storage
 from datetime import datetime
 
+
 class TestState(unittest.TestCase):
     """to reset cases for the `State` class."""
 
@@ -63,6 +64,7 @@ class TestState(unittest.TestCase):
         self.assertIn('created_at', a_dict.keys())
         self.assertIn('updated_at', a_dict.keys())
         self.assertNotEqual(s1, s2)
+
 
 if __name__ == "__main__":
     unittest.main()
