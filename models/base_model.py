@@ -1,8 +1,9 @@
 #!/usr/bin/python3
+"""Base model module"""
+
 import uuid
 import datetime
 import models
-"""Base model module"""
 
 
 class BaseModel:
@@ -15,7 +16,8 @@ class BaseModel:
             for key, val in kwargs.items():
                 if key != '__class__':
                     if key == 'created_at' or key == 'updated_at':
-                        setattr(self, key, datetime.datetime.fromisoformat(val))
+                        setattr(self, key,
+                                datetime.datetime.fromisoformat(val))
                     else:
                         setattr(self, key, val)
         else:
@@ -37,6 +39,8 @@ class BaseModel:
         for key, val in self.__dict__.items():
             class_dict[key] = val
         class_dict['__class__'] = type(self).__name__
-        class_dict['created_at'] = class_dict['created_at'].isoformat(timespec='microseconds')
-        class_dict['updated_at'] = class_dict['updated_at'].isoformat(timespec='microseconds')
+        class_dict['created_at'] = class_dict['created_at'].isoformat(
+                timespec='microseconds')
+        class_dict['updated_at'] = class_dict['updated_at'].isoformat(
+                timespec='microseconds')
         return class_dict

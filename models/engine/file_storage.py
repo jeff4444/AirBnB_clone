@@ -28,13 +28,13 @@ class FileStorage:
             with open(self.__file_path, 'r', encoding='utf-8') as f:
                 dict_loaded = json.load(f)
                 class_dicts = {'BaseModel': models.base_model.BaseModel,
-                    'User': models.user.User,
-                    'Place': models.place.Place,
-                    'Review': models.review.Review,
-                    'City': models.city.City,
-                    'Amenity': models.amenity.Amenity,
-                    'State': models.state.State,
-                    }
+                               'User': models.user.User,
+                               'Place': models.place.Place,
+                               'Review': models.review.Review,
+                               'City': models.city.City,
+                               'Amenity': models.amenity.Amenity,
+                               'State': models.state.State,
+                               }
                 for key1, val in dict_loaded.items():
                     for key in class_dicts:
                         if key1[0:len(key)] == key:

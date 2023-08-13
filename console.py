@@ -6,6 +6,7 @@ import cmd
 import sys
 import models
 
+
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
@@ -22,13 +23,13 @@ class HBNBCommand(cmd.Cmd):
         if arg:
             args_list = arg.split()
             class_dicts = {'BaseModel': models.base_model.BaseModel,
-                    'User': models.user.User,
-                    'Place': models.place.Place,
-                    'Review': models.review.Review,
-                    'City': models.city.City,
-                    'Amenity': models.amenity.Amenity,
-                    'State': models.state.State,
-                    }
+                           'User': models.user.User,
+                           'Place': models.place.Place,
+                           'Review': models.review.Review,
+                           'City': models.city.City,
+                           'Amenity': models.amenity.Amenity,
+                           'State': models.state.State,
+                           }
             my_instance = None
             for key in class_dicts:
                 if args_list[0] == key:
@@ -45,7 +46,8 @@ class HBNBCommand(cmd.Cmd):
         """Shows an instance using its ID"""
         if arg:
             args_list = arg.split()
-            available_classes = ['BaseModel', 'User', 'Place', 'City', 'Amenity', 'Review', 'State']
+            available_classes = ['BaseModel', 'User', 'Place',
+                                 'City', 'Amenity', 'Review', 'State']
             if args_list[0] not in available_classes:
                 print("** class doesn't exist **")
                 return
@@ -64,7 +66,8 @@ class HBNBCommand(cmd.Cmd):
         """Destroys an instance using its ID"""
         if arg:
             args_list = arg.split()
-            available_classes = ['BaseModel', 'User', 'Place', 'City', 'Amenity', 'Review', 'State']
+            available_classes = ['BaseModel', 'User', 'Place',
+                                 'City', 'Amenity', 'Review', 'State']
             if args_list[0] not in available_classes:
                 print("** class doesn't exist **")
                 return
@@ -84,7 +87,8 @@ class HBNBCommand(cmd.Cmd):
         """return all instances of a certain class or simply all instances"""
         if arg:
             args_list = arg.split()
-            available_classes = ['BaseModel', 'User', 'Place', 'City', 'Amenity', 'Review', 'State']
+            available_classes = ['BaseModel', 'User', 'Place',
+                                 'City', 'Amenity', 'Review', 'State']
             if arg not in available_classes:
                 print("** class doesn't exist **")
                 return
@@ -106,7 +110,8 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name and id"""
         if arg:
             args_list = arg.split()
-            available_classes = ['BaseModel', 'User', 'Place', 'City', 'Amenity', 'Review', 'State']
+            available_classes = ['BaseModel', 'User', 'Place',
+                                 'City', 'Amenity', 'Review', 'State']
             if args_list[0] not in available_classes:
                 print("** class doesn't exist **")
                 return
@@ -123,7 +128,8 @@ class HBNBCommand(cmd.Cmd):
             else:
                 if args_list[3][0] == "'" or args_list[3][0] == '"':
                     args_list[3] = args_list[3][1:(len(args_list[3]) - 1)]
-                setattr(models.storage.all()[key_name], str(args_list[2]), str(args_list[3]))
+                setattr(models.storage.all()[key_name], str(args_list[2]),
+                        str(args_list[3]))
                 models.storage.save()
         else:
             print("** class name missing **")
@@ -151,7 +157,6 @@ class HBNBCommand(cmd.Cmd):
             for argument in args:
                 arg += (' ' + argument[1:-1])
             self.do_update(commands_list[0])
-
 
 
 if __name__ == '__main__':

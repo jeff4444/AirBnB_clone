@@ -6,6 +6,7 @@ which sub-classes the `BaseModel()` class.`
 """
 from models.base_model import BaseModel
 
+
 class City(BaseModel):
     """the city in the application.
 
