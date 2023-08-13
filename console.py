@@ -2,6 +2,7 @@
 """AirBnB console"""
 
 
+import re
 import cmd
 import models
 from models.base_model import BaseModel
@@ -147,6 +148,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def default(self, arg):
+        arg = arg.strip()
         args = arg.split()
         commands_list = args[0].split('.')
         if len(commands_list) == 1:
@@ -163,6 +165,19 @@ class HBNBCommand(cmd.Cmd):
         elif func[0:7] == 'destroy':
             arg = commands_list[0] + ' ' + func[9:-2]
             self.do_destroy(arg)
+        elif func.split('(')[0] == 'update':
+            pattern = r"update\((.*?)\)"
+            match = re.search(pattern, arg.split('.')[1])
+            if match:
+                elements_str = match.group(1)
+                elements_list = [elem.strip().strip("'\"")
+                                 for elem in elements_str.split(',')]
+            else:
+                elements_list = None
+            if elements_list is None or elements_list == ['']:
+                self.do_update(commands_list[0])
+            else:
+                self.do_update(" ".join([commands_list[0]] + elements_list))
         else:
             print(f"*** Unknown syntax: {arg}")
 
