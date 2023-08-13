@@ -54,6 +54,7 @@ class FileStorage:
                 for key1, val in dict_loaded.items():
                     for key in class_dicts:
                         if key1[0:len(key)] == key:
-                            type(self).__objects[key1] = class_dicts[key](**val)
+                            type(self).__objects[key1] = class_dicts[key](
+                                    **val)
         except FileNotFoundError:
             return
