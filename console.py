@@ -107,7 +107,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Print all instances of a certain class"""
-        print(self.do_all_list(arg))
+        all_list = self.do_all_list(arg)
+        if all_list is not None:
+            print(all_list)
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
