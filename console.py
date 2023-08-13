@@ -150,13 +150,6 @@ class HBNBCommand(cmd.Cmd):
         elif func[0:7] == 'destroy':
             arg = commands_list[0] + ' ' + func[9:-2]
             self.do_destroy(arg)
-        elif func[0:6] == 'update':
-            arg = commands_list[0] + ' '
-            print(func)
-            args = func[7:-1].split(',')
-            for argument in args:
-                arg += (' ' + argument[1:-1])
-            self.do_update(commands_list[0])
 
 
 if __name__ == '__main__':

@@ -11,12 +11,15 @@ class FileStorage:
     __objects = {}
 
     def all(self):
+        """Returns all objecrs"""
         return self.__objects
 
     def new(self, obj):
+        """Adds a new object to our objects dict"""
         self.__objects[f'{type(obj).__name__}.{obj.id}'] = obj
 
     def save(self):
+        """Save our object dict to our file path"""
         dict_to_save = {}
         for key, val in self.__objects.items():
             dict_to_save[key] = val.to_dict()
@@ -24,6 +27,7 @@ class FileStorage:
             json.dump(dict_to_save, f)
 
     def reload(self):
+        """Reloads objects from file path"""
         try:
             with open(self.__file_path, 'r', encoding='utf-8') as f:
                 dict_loaded = json.load(f)
