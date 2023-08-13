@@ -28,15 +28,18 @@ class BaseModel:
 
     def __str__(self):
         """Return the string representation of instance"""
+
         return f'[{type(self).__name__}] ({self.id}) {self.__dict__}'
 
     def save(self):
         """Saves an instance"""
+
         self.updated_at = datetime.datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """Returns the dict representation of a BaseModel"""
+
         class_dict = {}
         for key, val in self.__dict__.items():
             class_dict[key] = val
