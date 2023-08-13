@@ -5,7 +5,10 @@ from models.engine.file_storage import FileStorage
 import models
 """Tests the base_model module"""
 
+
 storage = FileStorage()
+
+
 class TestBaseModel(unittest.TestCase):
     """Test base_model class"""
 
@@ -20,7 +23,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test_new(self):
         myModel = BaseModel()
-        self.assertEqual(myModel, models.storage.all()[f'BaseModel.{myModel.id}'])
+        self.assertEqual(myModel, models.storage.all()[
+            f'BaseModel.{myModel.id}'])
         del models.storage.all()[f'BaseModel.{myModel.id}']
         models.storage.save()
 
