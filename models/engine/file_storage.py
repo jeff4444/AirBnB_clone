@@ -7,6 +7,8 @@ import models
 
 
 class FileStorage:
+    """Handles serialisation and deserialisation"""
+
     __file_path = 'storage.json'
     __objects = {}
 
