@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """File storage module"""
-
-
 import json
 from models.base_model import BaseModel
 from models.user import User
