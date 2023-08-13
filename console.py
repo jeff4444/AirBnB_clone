@@ -4,6 +4,13 @@
 
 import cmd
 import models
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -17,17 +24,21 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program"""
         return True
 
+    def emptyline(self):
+        """Ensures nothing is executed when an empty line is passed"""
+        pass
+
     def do_create(self, arg):
         """Creates a new instance of a class and saves it"""
         if arg:
             args_list = arg.split()
-            class_dicts = {'BaseModel': models.base_model.BaseModel,
-                           'User': models.user.User,
-                           'Place': models.place.Place,
-                           'Review': models.review.Review,
-                           'City': models.city.City,
-                           'Amenity': models.amenity.Amenity,
-                           'State': models.state.State,
+            class_dicts = {'BaseModel': BaseModel,
+                           'User': User,
+                           'Place': Place,
+                           'Review': Review,
+                           'City': City,
+                           'Amenity': Amenity,
+                           'State': State,
                            }
             my_instance = None
             for key in class_dicts:
@@ -103,7 +114,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Print all instances of a certain class"""
-        print(self.do_all_list(arg))
+        all_list = self.do_all_list(arg)
+        if all_list is not None:
+            print(all_list)
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
@@ -137,6 +150,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         commands_list = args[0].split('.')
         if len(commands_list) == 1:
+            print(f'*** Unknown syntax: {arg}')
             return
         func = commands_list[1]
         if func == 'all()':
@@ -149,6 +163,8 @@ class HBNBCommand(cmd.Cmd):
         elif func[0:7] == 'destroy':
             arg = commands_list[0] + ' ' + func[9:-2]
             self.do_destroy(arg)
+        else:
+            print(f"*** Unknown syntax: {arg}")
 
 
 if __name__ == '__main__':
