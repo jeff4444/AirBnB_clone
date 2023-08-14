@@ -23,7 +23,7 @@ class TestBaseModel(unittest.TestCase):
         string = f'[BaseModel] ({my_model.id}) {model_dict}'
         self.assertEqual(str(my_model), string)
 
-    def test_dict(self):
+    def test_to_dict(self):
         my_model = BaseModel()
         my_model.name = "Hello"
         my_model.save()
