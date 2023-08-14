@@ -1,17 +1,21 @@
 #!/usr/bin/python3
+"""Tests the base model module"""
+
+
 import unittest
 from models.base_model import BaseModel
-"""Tests the base_model module"""
 
 
 class TestBaseModel(unittest.TestCase):
     """Test base_model class"""
 
     def test_init(self):
+        """test init module"""
         my_model = BaseModel()
         my_model.name = "Mine"
 
     def test_save(self):
+        """Test save method"""
         my_model = BaseModel()
         my_model.name = "Hello"
         my_model.save()
@@ -24,6 +28,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(my_model), string)
 
     def test_to_dict(self):
+        """Test to_dict method"""
         my_model = BaseModel()
         my_model.name = "Hello"
         my_model.save()
@@ -38,6 +43,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(my_model.to_dict(), model_dict)
 
     def test_str(self):
+        """Test str method"""
         my_model = BaseModel()
         model_dict = {}
         model_dict['id'] = my_model.id
