@@ -51,3 +51,7 @@ class TestBaseModel(unittest.TestCase):
         model_dict['updated_at'] = my_model.updated_at
         string = f'[BaseModel] ({my_model.id}) {model_dict}'
         self.assertEqual(str(my_model), string)
+
+
+if __name__ == '__main__':
+    unittest.main()
