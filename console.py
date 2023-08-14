@@ -2,6 +2,7 @@
 """AirBnB console"""
 
 
+import json
 import re
 import cmd
 import models
@@ -177,7 +178,25 @@ class HBNBCommand(cmd.Cmd):
             if elements_list is None or elements_list == ['']:
                 self.do_update(commands_list[0])
             else:
-                self.do_update(" ".join([commands_list[0]] + elements_list))
+                if len(elements_list) > 1 and elements_list[1][0] == '{':
+                    my_str = ''
+                    for i in range(1, len(elements_list)):
+                        my_str += elements_list[i] + "', '"
+                    my_str = my_str[:-4]
+                    string = ''
+                    for ch in my_str:
+                        if ch == "'":
+                            string += '"'
+                        else:
+                            string += ch
+                    dict_rep = json.loads(string)
+                    for key, val in dict_rep.items():
+                        arg = commands_list[0] + ' ' + elements_list[0]
+                        arg += ' ' + str(key) + ' ' + str(val)
+                        self.do_update(arg)
+                else:
+                    self.do_update(" ".join([commands_list[0]] +
+                                            elements_list))
         else:
             print(f"*** Unknown syntax: {arg}")
 
