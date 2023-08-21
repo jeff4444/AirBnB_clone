@@ -56,10 +56,13 @@ ul.popover {
 	list-style: none;
 }
 
+.popover li {
+	list-style: none;
+}
+
 ul.popover > li > h2 {
 	font-size: 16px;
 }
-
-ul.popover:hover {
+.locations:hover > .popover, .amenities:hover > .popover {
 	display: block;
 }
