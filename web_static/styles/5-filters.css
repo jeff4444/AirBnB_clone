@@ -39,3 +39,7 @@ section.filters div h4 {
 	font-weight: 400;
 	font-size: 14px;
 }
+
+div.locations {
+	border-right: 1px #DDDDDD solid;
+}
