@@ -5,8 +5,6 @@ section.filters {
 	border: 1px #DDDDDD solid;
 	border-radius: 4px;
 	display: flex;
-	justify-self: center;
-	justify-content: right;
 	align-items: center;
 }
 
@@ -18,8 +16,8 @@ section.filters button {
 	width: 20%;
 	border: 0px;
 	border-radius: 4px;
-	justify-content: center;
 	margin-right: 30px;
+	margin-left: auto;
 }
 
 section.filters button:hover {
@@ -29,15 +27,20 @@ section.filters button:hover {
 section.filters div {
 	height: 100%;
 	width: 25%;
+	align-items: center;
 }
 
 section.filters div h3 {
 	font-weight: 600;
+	text-align: center;
+	margin: 10px auto;
 }
 
 section.filters div h4 {
 	font-weight: 400;
 	font-size: 14px;
+	text-align: center;
+	margin: 5px auto;
 }
 
 div.locations {
