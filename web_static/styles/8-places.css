@@ -1,12 +1,15 @@
 .price_by_night {
 	color: #FF5A5F;
 	border: 4px #FF5A5F solid;
-	border-radius: 4px;
+	border-radius: 60px;
 	min-width: 60px;
 	height: 60px;
 	font-size: 30px;
 	align-self: right;
 	margin: 0;
+	height: 60px;
+	width: 60px;
+	justify-content: center;
 }
 
 .information {
@@ -14,7 +17,8 @@
 	border-top: 1px #DDDDDD solid;
 	border-bottom: 1px #DDDDDD solid;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-around;
 }
 
 .max_guest::before {
