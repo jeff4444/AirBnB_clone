@@ -67,6 +67,10 @@ ul.popover > li > h2 {
 	display: block;
 }
 
+.places {
+	margin-top: 20px;
+}
+
 .places > h1 {
 	align-self: left;
 	margin-top: 0px;
