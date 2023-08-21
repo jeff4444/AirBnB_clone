@@ -4,6 +4,10 @@ section.filters {
 	width: 100%;
 	border: 1px #DDDDDD solid;
 	border-radius: 4px;
+	display: flex;
+	justify-self: center;
+	justify-content: right;
+	align-items: center;
 }
 
 section.filters button {
@@ -12,6 +16,7 @@ section.filters button {
 	color: #FFFFFF;
 	height: 48px;
 	width: 20%;
+	border: 0px;
 	border-radius: 4px;
 	justify-content: center;
 	margin-right: 30px;
