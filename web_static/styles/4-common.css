@@ -10,4 +10,7 @@ body {
 	max-width: 1000px;
 	margin: 30px auto;
 	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
